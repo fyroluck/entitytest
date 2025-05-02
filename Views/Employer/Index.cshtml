@@ -1,0 +1,46 @@
+@model IEnumerable<entitytest.Models.Employer>
+
+<h1>Employers</h1>
+
+<!-- Button to create a new employer -->
+<a href="@Url.Action("Create", "Employer")" class="btn btn-primary">Create New Employer</a>
+
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Jobs</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employer in Model)
+        {
+            <tr>
+                <td>@employer.EmployerID</td>
+                <td>@employer.EmployerName</td>
+                <td>
+                    @if (employer.Jobs != null && employer.Jobs.Any())
+                    {
+                        <ul>
+                            @foreach (var job in employer.Jobs)
+                            {
+                                <li>@job.JobTitle</li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <em>No jobs available</em>
+                    }
+                </td>
+                <td>
+                    <!-- Edit and Delete buttons for each employer -->
+                    <a href="@Url.Action("Edit", "Employer", new { id = employer.EmployerID })" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="@Url.Action("Delete", "Employer", new { id = employer.EmployerID })" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

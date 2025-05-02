@@ -1,0 +1,17 @@
+@model entitytest.Models.Employer
+
+<h1>Edit Employer</h1>
+
+<h4>Employer</h4>
+<hr />
+
+<form method="post">
+    <input type="hidden" name="EmployerID" value="@Model.EmployerID" />
+    <div class="form-group">
+        <label for="EmployerName">Employer Name</label>
+        <input type="text" class="form-control" id="EmployerName" name="EmployerName" value="@Model.EmployerName" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a href="@Url.Action("Index", "Employer")" class="btn btn-secondary">Cancel</a>
+</form>
